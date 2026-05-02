@@ -98,6 +98,9 @@
   padding: 15px 30px;
   cursor: pointer;
   z-index: 1;
+
+  filter: 
+    drop-shadow(0px 0px 5px #0e510f)
 }
 
 
@@ -116,8 +119,11 @@
   
   /* The Secret Sauce */
   opacity: 0;
-  transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.1s ease-in-out;
   z-index: -1; /* Sits behind the text, but above the idle border */
+
+  filter: 
+    drop-shadow(0px 0px 3px #000)
 }
 
 /* Fade in the hover texture */
@@ -128,13 +134,26 @@
 /* Kill everything on click */
 .crpg2-button:active::before {
   opacity: 0;
-  transition: none;
+  animation: rattle 0.2s linear 1;
+  /* transition: none; */
 }
 
 /* Kill everything on click */
 .crpg2-button:active {
+  animation: rattle 0.2s linear 1;
   border-image-source: url('textures/button02_pressed.png');
 }
+
+.crpg3-button {
+  /* animation: rattle 0.2s linear 1; */
+  border: 30px solid;
+  border-image-source: url('textures/button_alpha.png');
+  border-image-slice: 30 fill; 
+  background: transparent;
+  filter: 
+    drop-shadow(0px 0px 3px #000)
+}
+
 
 
 /* .crpg-button.legendary {
