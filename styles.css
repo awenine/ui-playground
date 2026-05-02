@@ -4,3 +4,149 @@
   font-weight: 600;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+.crpg-button {
+  /* Remove default styling */
+  appearance: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  
+  /* Typography: Use a pixel or gothic font for authenticity */
+  color: #104F5C;   
+  font-family: 'Georgia', serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-shadow: 2px 2px #e1bdbd;
+
+  /* The Texture */
+  /* padding: 15px 30px; */
+  /* background-image: url('textures/stone.png'); */
+  /* background-size: cover; */
+  
+  /* The "Heavy" Border */
+  border: 30px solid;
+  border-image-source: url('textures/button01_neutral.png');
+  border-image-slice: 30 fill; 
+  /* This matches the pixel width of your border art */
+  
+  transition: all 0.05s; /* Fast transition for a snappy feel */
+}
+
+@keyframes rattle {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(1px, -1px); }
+  50% { transform: translate(-1px, 1px); }
+  75% { transform: translate(1px, 1px); }
+  100% { transform: translate(0, 0); }
+}
+
+
+.crpg-button:hover {
+  
+  animation: rattle 0.2s linear 1;
+  /* border-image-source: url('textures/button01_pressed.png'); */
+  /* transform: translateY(2px);  Physical depression */
+  /* filter: brightness(0.5) contrast(1.0);  */
+  /* Fakes a "pressed" lighting change */
+  /* color: #aa8a2e; */
+}
+
+/* The "Click" Effect */
+.crpg-button:active {
+
+  border-image-source: url('textures/button01_pressed.png');
+  transform: translateY(2px); /*  Physical depression */
+  filter: brightness(0.95) contrast(1.1); 
+  animation: none;
+  /* Fakes a "pressed" lighting change */
+  /* color: #aa8a2e; */
+}
+
+
+.serated {
+  border-image-source: url('textures/button02_neutral.png');
+}
+
+.serated:hover {
+  border-image-source: url('textures/button02_hover.png');
+  animation: none;
+}
+
+.serated:active {
+  border-image-source: url('textures/button02_pressed.png');
+  text-shadow: none;
+  color: #270606;  
+}
+
+.button-panel {
+  background-color: #6b9779;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: fit-content;
+}
+
+.crpg2-button {
+  position: relative;
+  appearance: none;
+  background: none;
+  border: 10px solid;
+  /* Idle Texture */
+  border-image: url('textures/button02_neutral.png') 18 fill;
+  padding: 15px 30px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+
+
+/* USING BEFORE PSEUD ELEMENT TO HANDLE HOVER OPACITY */
+/* The Hover Texture Layer */
+.crpg2-button::before {
+  content: "";
+  position: absolute;
+  /* Expand to cover the entire button including the border area */
+  top: -10px; bottom: -10px; left: -10px; right: -10px;
+  
+  /* Hover Texture */
+  border: 10px solid;
+  border-image: url('textures/button02_hover.png') 18 fill;
+  
+  /* The Secret Sauce */
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  z-index: -1; /* Sits behind the text, but above the idle border */
+}
+
+/* Fade in the hover texture */
+.crpg2-button:hover::before {
+  opacity: 1;
+}
+
+/* Kill everything on click */
+.crpg2-button:active::before {
+  opacity: 0;
+  transition: none;
+}
+
+/* Kill everything on click */
+.crpg2-button:active {
+  border-image-source: url('textures/button02_pressed.png');
+}
+
+
+/* .crpg-button.legendary {
+  filter: 
+    drop-shadow(0px 0px 3px #000)       */
+    /* Dark depth shadow */
+    /* drop-shadow(0 0 10px #d4af37);      */
+    /* Golden outer glow */
+/* } */
+
+/* When pressed, "snuff out" the glow */
+/* .crpg-button.legendary:active {
+  filter: drop-shadow(1px 1px 1px #000);
+  transform: translateY(2px);
+} */
